@@ -26,7 +26,7 @@ public class Player {
 		
 	}
 
-	public void draw() {
+	public void render() {
 		/* drawTexture(texture, xPos, PLAYER_Y_LEVEL, 64, 64); */
 		drawQuad(xPos, PLAYER_Y_LEVEL, 16, 16, r, g, b);
 	}

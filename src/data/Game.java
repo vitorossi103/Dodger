@@ -15,6 +15,8 @@ public class Game {
 
 	public Game() {
 		player = new Player(0.1f, 1f, 0.25f, 400, 8);
+		
+		// hard coding this for now
 		enemiesAllowed = 50;
 		enemiesSpawned = 0;
 		enemyList = new ArrayList<Enemy>(enemiesAllowed);
@@ -33,7 +35,7 @@ public class Game {
 		}
 		
 		player.update();
-		player.draw();
+		player.render();
 		
 	}
 
@@ -42,7 +44,7 @@ public class Game {
 	}
 
 	public void draw() {
-		player.draw();
+		player.render();
 	}
 
 }
