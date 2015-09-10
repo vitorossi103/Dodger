@@ -15,15 +15,16 @@ public class Enemy {
 		this.b = b;
 		this.x = x;
 		this.speed = speed;
-		this.yLevel = 100;
+		this.yLevel = Game.SCREEN_HEIGHT;
 		this.alive = true;
 	}
 
 	public void update() {
-		// logic goes here
-		if (alive) {
-			yLevel += speed;
-		}
+		/*
+		 * logic goes here
+		 */
+
+		yLevel -= speed;
 
 		// check if enemy has reached bottom of screen
 		if (yLevel > Game.SCREEN_HEIGHT) {
@@ -33,8 +34,8 @@ public class Enemy {
 	}
 
 	public void render() {
-		drawQuad(x, yLevel, 16, 16, r, g, b);
-//		System.out.println("drew enemy");
+		drawQuad(x, yLevel, Game.ENTITY_SIZE, Game.ENTITY_SIZE, r, g, b);
+		// System.out.println("drew enemy");
 	}
 
 	public float getSpeed() {
@@ -84,4 +85,13 @@ public class Enemy {
 	public void setB(float b) {
 		this.b = b;
 	}
+
+	public boolean isAlive() {
+		return alive;
+	}
+
+	public void setAlive(boolean alive) {
+		this.alive = alive;
+	}
+
 }

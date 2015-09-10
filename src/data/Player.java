@@ -5,6 +5,7 @@ import static helpers.Artist.drawQuad;
 import org.lwjgl.input.Keyboard;
 
 public class Player {
+	// player y level shouldn't ever change
 	private static final float PLAYER_Y_LEVEL = 50;
 	private float xPos;
 	private float speed;
@@ -23,21 +24,29 @@ public class Player {
 	}
 
 	public void update() {
-		
+
 	}
 
 	public void render() {
 		/* drawTexture(texture, xPos, PLAYER_Y_LEVEL, 64, 64); */
-		drawQuad(xPos, PLAYER_Y_LEVEL, 16, 16, r, g, b);
+		drawQuad(xPos, PLAYER_Y_LEVEL, Game.ENTITY_SIZE, Game.ENTITY_SIZE, r,
+				g, b);
 	}
 
 	public void getInput() {
 		if (Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
 			xPos -= speed;
+			if (xPos < 0) {
+				xPos = 0;
+			}
+
 		}
 
 		if (Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
 			xPos += speed;
+			if (xPos > Game.SCREEN_WIDTH) {
+				xPos = Game.SCREEN_WIDTH - Game.ENTITY_SIZE;
+			}
 		}
 	}
 
