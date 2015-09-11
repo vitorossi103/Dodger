@@ -10,6 +10,7 @@ import static org.lwjgl.opengl.GL11.glDisable;
 import static org.lwjgl.opengl.GL11.glLoadIdentity;
 import static org.lwjgl.opengl.GL11.glMatrixMode;
 import static org.lwjgl.opengl.GL11.glOrtho;
+import helpers.Clock;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
@@ -30,6 +31,7 @@ public class Main {
 	}
 	
 	private static void gameLoop() {
+		Clock.init();
 		while (!Display.isCloseRequested()) {
 			getInput();
 			update();
@@ -43,6 +45,7 @@ public class Main {
 	
 	private static void update() {
 		game.update();
+		Clock.update();
 	}
 	
 	private static void render() {

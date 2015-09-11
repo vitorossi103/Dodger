@@ -28,7 +28,6 @@ public class Enemy {
 
 		// check if enemy has reached bottom of screen
 		if (yLevel > Game.SCREEN_HEIGHT) {
-			System.out.println("reached bottom");
 			alive = false;
 		}
 	}

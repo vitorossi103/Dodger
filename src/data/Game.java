@@ -1,6 +1,7 @@
 package data;
 
 import static helpers.Util.*;
+import helpers.Delay;
 
 import java.util.ArrayList;
 
@@ -16,22 +17,29 @@ public class Game {
 
 	private ArrayList<Enemy> enemyList;
 
+	private Delay enemySpawnDelay;
+
 	public Game() {
-		player = new Player(0.1f, 1f, 0.25f, 400, 8);
+		player = new Player(0.1f, 1f, 0.25f, 400, 6);
 
 		// hard coding this for now
-		enemiesAllowed = 5000;
+		enemiesAllowed = 50000;
 		enemiesSpawned = 0;
 		enemyList = new ArrayList<Enemy>(enemiesAllowed);
-
+		enemySpawnDelay = new Delay(75);
+		enemySpawnDelay.end();
 	}
 
 	public void update() {
 		if (enemiesSpawned < enemiesAllowed) {
-			System.out.println("spawning another");
-			enemyList.add(new Enemy((float) Math.random(), (float) Math.random(), (float) Math.random(),
-					randInt(0, SCREEN_WIDTH), 2));
-			enemiesSpawned++;
+			if (enemySpawnDelay.over()) {
+				System.out.println("spawning another");
+				enemyList.add(new Enemy((float) Math.random(), (float) Math
+						.random(), (float) Math.random(), randInt(0,
+						SCREEN_WIDTH), 2));
+				enemiesSpawned++;
+				enemySpawnDelay.start();
+			}
 		}
 
 		for (Enemy e : enemyList) {
@@ -40,11 +48,8 @@ public class Game {
 
 				if (isColliding(player, e)) {
 					e.setAlive(false);
-					System.out.println("enemy collided with player");
-					//TODO make enemies "not alive" not be drawn
+					// TODO make enemies "not alive" not be drawn
 				}
-			} else {
-
 			}
 		}
 
